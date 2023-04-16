@@ -4,6 +4,7 @@ import com.andriiv.in100gram.entity.enums.Role;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.*;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +25,7 @@ public class User {
     private String lastName;
 
     @Column(unique = true, updatable = false)
-    private String userName;
+    private String username;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -35,7 +37,8 @@ public class User {
     private String bio;
 
     @ElementCollection(targetClass = Role.class)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @CollectionTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"))
     private Set<Role> role = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
@@ -47,20 +50,20 @@ public class User {
 
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
-
-    public User() {
+    public User(Long id,
+                String username,
+                String email,
+                String password,
+                Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.authorities = authorities;
     }
 
     @PrePersist
     protected void onCreate() {
         this.createdDate = LocalDateTime.now();
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 }

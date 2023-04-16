@@ -2,6 +2,7 @@ package com.andriiv.in100gram.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ Created by Roman Andriiv (16.04.2023 - 19:33)
 */
 @Data
 @Entity
+@NoArgsConstructor
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
