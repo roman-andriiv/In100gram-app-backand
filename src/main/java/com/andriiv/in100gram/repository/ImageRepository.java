@@ -1,5 +1,6 @@
-package com.andriiv.in100gram.entity;
+package com.andriiv.in100gram.repository;
 
+import com.andriiv.in100gram.entity.ImageModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

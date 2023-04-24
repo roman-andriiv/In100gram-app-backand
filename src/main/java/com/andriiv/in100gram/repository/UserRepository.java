@@ -12,7 +12,7 @@ Created by Roman Andriiv (24.04.2023 - 12:11)
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findUserById(Long id);
+    Optional<User> findUserById(Long userId);
 
     Optional<User> findUserByUsername(String username);
 
