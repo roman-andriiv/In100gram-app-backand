@@ -1,4 +1,4 @@
-package com.andriiv.in100gram.entity;
+package com.andriiv.in100gram.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-/*
-Created by Roman Andriiv (16.04.2023 - 19:55)
+/**
+*Created by Roman Andriiv (16.04.2023 - 19:55)
 */
 @Data
 @Entity

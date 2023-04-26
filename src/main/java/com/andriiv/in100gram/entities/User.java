@@ -1,6 +1,6 @@
-package com.andriiv.in100gram.entity;
+package com.andriiv.in100gram.entities;
 
-import com.andriiv.in100gram.entity.enums.Role;
+import com.andriiv.in100gram.entities.enums.Role;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;

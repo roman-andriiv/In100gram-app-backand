@@ -1,15 +1,15 @@
-package com.andriiv.in100gram.repository;
+package com.andriiv.in100gram.repositories;
 
-import com.andriiv.in100gram.entity.Post;
-import com.andriiv.in100gram.entity.User;
+import com.andriiv.in100gram.entities.Post;
+import com.andriiv.in100gram.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-/*
-Created by Roman Andriiv (24.04.2023 - 12:23)
+/**
+*Created by Roman Andriiv (24.04.2023 - 12:23)
 */
 @Repository
 public interface PostRepository  extends JpaRepository<Post, Long> {

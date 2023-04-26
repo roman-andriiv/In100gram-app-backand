@@ -1,12 +1,12 @@
-package com.andriiv.in100gram.entity;
+package com.andriiv.in100gram.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.minidev.json.annotate.JsonIgnore;
 
-/*
-Created by Roman Andriiv (16.04.2023 - 20:08)
+/**
+*Created by Roman Andriiv (16.04.2023 - 20:08)
 */
 @Data
 @Entity

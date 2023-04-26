@@ -1,4 +1,4 @@
-package com.andriiv.in100gram.entity;
+package com.andriiv.in100gram.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -10,8 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/*
-Created by Roman Andriiv (16.04.2023 - 19:33)
+/**
+*Created by Roman Andriiv (16.04.2023 - 19:33)
 */
 @Data
 @Entity
