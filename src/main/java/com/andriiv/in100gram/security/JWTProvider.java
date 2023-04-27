@@ -16,7 +16,7 @@ import java.util.Map;
  */
 @Component
 public class JWTProvider {
-    public static final Logger LOGGER = LoggerFactory.getLogger(JWTProvider.class);
+    public static final Logger LOG = LoggerFactory.getLogger(JWTProvider.class);
 
     public String generateToken(Authentication authentication) {
 
@@ -28,7 +28,7 @@ public class JWTProvider {
 
         Map<String, Object> claimsMap = new HashMap<>();
         claimsMap.put("id", userId);
-        claimsMap.put("username", user.getUsername());
+        claimsMap.put("username", user.getEmail());
         claimsMap.put("firstname", user.getFirstName());
         claimsMap.put("lastname", user.getLastName());
 
@@ -46,14 +46,14 @@ public class JWTProvider {
 
             Jwts.parser()
                     .setSigningKey(SecurityConstants.SECRET)
-                    .parseClaimsJwt(token);
+                    .parseClaimsJws(token);
             return true;
 
         } catch (SignatureException | MalformedJwtException |
                  ExpiredJwtException | UnsupportedJwtException |
                  IllegalArgumentException e) {
 
-            LOGGER.error(e.getMessage());
+            LOG.error(e.getMessage());
             return false;
         }
     }
@@ -62,7 +62,7 @@ public class JWTProvider {
 
         Claims claims = Jwts.parser()
                 .setSigningKey(SecurityConstants.SECRET)
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
 
         String id = (String) claims.get("id");
