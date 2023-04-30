@@ -9,12 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 /**
-*Created by Roman Andriiv (24.04.2023 - 12:23)
-*/
+ * Created by Roman Andriiv (24.04.2023 - 12:23)
+ */
 @Repository
-public interface PostRepository  extends JpaRepository<Post, Long> {
- Optional<Post> findAllByIdAndUser(Long postId, User user);
+public interface PostRepository extends JpaRepository<Post, Long> {
+    Optional<Post> findAllByIdAndUser(Long postId, User user);
 
- List<Post> findAllByUserOrderByCreatedDateDesc(User user);
- List<Post> findAllByOrderByCreatedDateDesc();
+    List<Post> findAllByUserOrderByCreatedDateDesc(User user);
+
+    List<Post> findAllByOrderByCreatedDateDesc();
 }

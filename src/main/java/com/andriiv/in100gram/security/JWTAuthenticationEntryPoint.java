@@ -16,7 +16,7 @@ import java.io.IOException;
  * Created by Roman Andriiv (27.04.2023 - 11:44)
  */
 @Component
-public class JWTAuthenticationEntryPoint  implements AuthenticationEntryPoint {
+public class JWTAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
 

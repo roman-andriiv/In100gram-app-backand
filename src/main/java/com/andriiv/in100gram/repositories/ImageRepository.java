@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
-*Created by Roman Andriiv (24.04.2023 - 12:35)
-*/
+ * Created by Roman Andriiv (24.04.2023 - 12:35)
+ */
 @Repository
 public interface ImageRepository extends JpaRepository<ImageModel, Long> {
     Optional<ImageModel> findByUserId(Long userId);

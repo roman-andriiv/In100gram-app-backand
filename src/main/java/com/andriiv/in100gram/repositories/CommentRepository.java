@@ -8,10 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
-*Created by Roman Andriiv (24.04.2023 - 12:44)
-*/
+ * Created by Roman Andriiv (24.04.2023 - 12:44)
+ */
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    Optional<Comment>findAllByPost(Post post);
+    Optional<Comment> findAllByPost(Post post);
+
     Comment findByIdAndUserId(Long id, Long userId);
 }

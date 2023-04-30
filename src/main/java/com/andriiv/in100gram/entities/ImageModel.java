@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import net.minidev.json.annotate.JsonIgnore;
 
 /**
-*Created by Roman Andriiv (16.04.2023 - 20:08)
-*/
+ * Created by Roman Andriiv (16.04.2023 - 20:08)
+ */
 @Data
 @Entity
 @NoArgsConstructor

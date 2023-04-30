@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
-*Created by Roman Andriiv (26.04.2023 - 09:56)
-*/
+ * Created by Roman Andriiv (26.04.2023 - 09:56)
+ */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -35,7 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         return build(user);
     }
 
-    public User loadUserById(Long id){
+    public User loadUserById(Long id) {
         return userRepository.findUserById(id).orElse(null);
     }
 

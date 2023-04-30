@@ -1,6 +1,5 @@
 package com.andriiv.in100gram.annotations;
 
-import com.andriiv.in100gram.validations.EmailValidator;
 import com.andriiv.in100gram.validations.PasswordMatchesValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -18,7 +17,7 @@ public @interface PasswordMatches {
 
     String message() default "Password do not match";
 
-    Class<?>[] groups() default{};
+    Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload()default {};
+    Class<? extends Payload>[] payload() default {};
 }
