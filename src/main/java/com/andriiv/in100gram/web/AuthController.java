@@ -38,7 +38,7 @@ public class AuthController {
     @Autowired
     private JWTProvider jwtProvider;
 
-    //api/auth/signup
+    //api/auth/signUp
     @PostMapping("/signUp")
     public ResponseEntity<Object> registerUser(@Valid @RequestBody SignupRequest signupRequest,
                                                BindingResult bindingResult) {
