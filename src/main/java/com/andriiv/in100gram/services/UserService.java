@@ -27,18 +27,18 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User createUser(SignupRequest userIn) {
+    public void createUser(SignupRequest userIn) {
         User user = new User();
         user.setEmail(userIn.getEmail());
         user.setFirstName(userIn.getFirstName());
         user.setLastName(userIn.getLastName());
         user.setUsername(userIn.getUsername());
         user.setPassword(passwordEncoder.encode(userIn.getPassword()));
-        user.getRole().add(Role.ROLE_USER);
+        user.getRoles().add(Role.ROLE_USER);
 
         try {
             LOG.info("Saving User {}", userIn.getEmail());
-            return userRepository.save(user);
+            userRepository.save(user);
         } catch (Exception e) {
             LOG.error("Error during registration, {}", e.getMessage());
             throw new UserExistException("The user " + user.getUsername() +

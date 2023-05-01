@@ -12,7 +12,7 @@
     <artifactId>In100gram</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>In100gram</name>
-    <description>In100gram</description>
+    <description>Software to share your posts</description>
     <properties>
         <java.version>17</java.version>
     </properties>
