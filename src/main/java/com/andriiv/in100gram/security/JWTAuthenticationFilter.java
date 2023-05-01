@@ -21,7 +21,6 @@ import java.util.Collections;
 /**
  * Created by Roman Andriiv (26.04.2023 - 14:50)
  */
-@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
     public static final Logger LOG = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
