@@ -42,7 +42,7 @@ public class UserService {
 
         try {
             LOG.info("Saving User {}", userIn.getEmail());
-           return userRepository.save(user);
+            return userRepository.save(user);
         } catch (Exception e) {
             LOG.error("Error during registration, {}", e.getMessage());
             throw new UserExistException("The user " + user.getUsername() +
@@ -50,29 +50,30 @@ public class UserService {
         }
     }
 
-    public User updateUser(UserDTO userDTO, Principal principal){
+    public User updateUser(UserDTO userDTO, Principal principal) {
 
         User user = getUserByPrincipal(principal);
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
+        user.setUsername(userDTO.getUsername());
         user.setBio(userDTO.getBio());
 
         return userRepository.save(user);
     }
 
-    public User getCurrentUser(Principal principal){
+    public User getCurrentUser(Principal principal) {
         return getUserByPrincipal(principal);
     }
 
-    private User getUserByPrincipal(Principal principal){
+    private User getUserByPrincipal(Principal principal) {
         String username = principal.getName();
-        return userRepository.findUserByUsername(username).orElseThrow(
-                ()-> new UsernameNotFoundException("User not found with username "+username));
+        return userRepository.findUserByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username " + username));
     }
 
     public User getUserById(Long userId) {
-        return userRepository.findUserById(userId).orElseThrow(
-                ()-> new UsernameNotFoundException("User not found with ID "+ userId));
+        return userRepository.findUserById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with ID " + userId));
 
     }
 }

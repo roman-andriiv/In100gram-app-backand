@@ -16,17 +16,14 @@ import java.util.Set;
 @Data
 @Entity
 @NoArgsConstructor
+@Table(name = "posts")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
-
     private String description;
-
     private String location;
-
     private Integer likes;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -22,7 +22,7 @@ public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
 
     @Override
     public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {
-        return validateEmail(email);
+        return (validateEmail(email));
     }
 
     private boolean validateEmail(String email) {

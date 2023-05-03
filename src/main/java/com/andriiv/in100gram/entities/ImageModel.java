@@ -11,6 +11,7 @@ import net.minidev.json.annotate.JsonIgnore;
 @Data
 @Entity
 @NoArgsConstructor
+@Table(name = "images")
 public class ImageModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +19,7 @@ public class ImageModel {
 
     @Column(nullable = false)
     private String name;
-    @Lob
+
     @Column(columnDefinition = "BYTEA")
     private byte[] imageBytes;
 

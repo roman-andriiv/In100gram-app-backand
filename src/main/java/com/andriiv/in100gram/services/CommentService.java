@@ -38,13 +38,13 @@ public class CommentService {
     public Comment saveComment(Long postId, CommentDTO commentDTO, Principal principal) {
 
         User user = getUserByPrincipal(principal);
-        Post post = postRepository.findById(postId).orElseThrow(
-                () -> new PostNotFoundException("Post cannot be found for username: " + user.getUsername()));
+        Post post = postRepository.findById(postId)
+                        .orElseThrow(() -> new PostNotFoundException("Post cannot be found for username: " + user.getEmail()));
 
         Comment comment = new Comment();
         comment.setPost(post);
         comment.setUserId(user.getId());
-        comment.setUserName(user.getUsername());
+        comment.setUsername(user.getUsername());
         comment.setMessage(commentDTO.getMessage());
 
         LOG.info("Saving comment for Post {}", post.getId());
@@ -52,9 +52,8 @@ public class CommentService {
     }
 
     public List<Comment> getAllCommentsForPost(Long postId) {
-
-        Post post = postRepository.findById(postId).orElseThrow(
-                () -> new PostNotFoundException("Post cannot be found"));
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new PostNotFoundException("Post cannot be found"));
 
         return commentRepository.findAllByPost(post);
     }
@@ -67,7 +66,7 @@ public class CommentService {
     private User getUserByPrincipal(Principal principal) {
 
         String username = principal.getName();
-        return userRepository.findUserByUsername(username).orElseThrow(
-                () -> new UsernameNotFoundException("User not found with username " + username));
+        return userRepository.findUserByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username " + username));
     }
 }

@@ -64,7 +64,7 @@ public class PostController {
         return new ResponseEntity<>(allPosts, HttpStatus.OK);
     }
 
-    @GetMapping("user/posts")
+    @GetMapping("/user/posts")
     public ResponseEntity<List<PostDTO>> getAllPostsForUser(Principal principal) {
 
         List<PostDTO> allPostsForUser = postService.getAllPostsForUser(principal)
@@ -86,7 +86,7 @@ public class PostController {
     }
 
     @PostMapping("/{postId}/delete")
-    public ResponseEntity<MessageResponse> deletePost(@PathVariable("postId")String postId, Principal principal){
+    public ResponseEntity<MessageResponse> deletePost(@PathVariable("postId") String postId, Principal principal) {
         postService.deletePost(Long.parseLong(postId), principal);
         return new ResponseEntity<>(new MessageResponse("Post was deleted"), HttpStatus.OK);
     }

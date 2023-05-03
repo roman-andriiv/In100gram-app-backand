@@ -39,10 +39,10 @@ public class PostService {
 
         User user = getUserByPrincipal(principal);
         Post post = new Post();
-        post.setTitle(postDTO.getTitle());
+        post.setUser(user);
         post.setDescription(postDTO.getDescription());
         post.setLocation(postDTO.getLocation());
-        post.setUser(user);
+        post.setTitle(postDTO.getTitle());
         post.setLikes(0);
 
         LOG.info("Saving Post for User: {}", user.getEmail());
@@ -57,7 +57,7 @@ public class PostService {
     public Post getPostById(Long postId, Principal principal) {
 
         User user = getUserByPrincipal(principal);
-        return postRepository.findAllByIdAndUser(postId, user).orElseThrow(
+        return postRepository.findPostByIdAndUser(postId, user).orElseThrow(
                 () -> new PostNotFoundException("Post cannot be found for username: " + user.getEmail()));
     }
 
@@ -71,7 +71,9 @@ public class PostService {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new PostNotFoundException("Post cannot be found"));
 
-        Optional<String> userLiked = post.getLikedUsers().stream().filter(u -> u.equals(username)).findAny();
+        Optional<String> userLiked = post.getLikedUsers()
+                .stream()
+                .filter(u -> u.equals(username)).findAny();
         if (userLiked.isPresent()) {
             post.setLikes(post.getLikes() - 1);
             post.getLikedUsers().remove(username);
@@ -93,7 +95,7 @@ public class PostService {
     private User getUserByPrincipal(Principal principal) {
 
         String username = principal.getName();
-        return userRepository.findUserByUsername(username).orElseThrow(
-                () -> new UsernameNotFoundException("User not found with username " + username));
+        return userRepository.findUserByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username " + username));
     }
 }

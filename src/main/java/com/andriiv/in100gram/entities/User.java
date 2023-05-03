@@ -14,6 +14,7 @@ import java.util.*;
 @Data
 @Entity
 @NoArgsConstructor
+@Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +26,7 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String lastName;
 
-    @Column(unique = true, updatable = false)
+    @Column(unique = true, nullable = false)
     private String username;
 
     @Column(nullable = false, unique = true)

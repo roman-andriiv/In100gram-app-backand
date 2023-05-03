@@ -43,23 +43,24 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserDTO> getUserProfile(@PathVariable String userId){
+    public ResponseEntity<UserDTO> getUserProfile(@PathVariable("userId") String userId) {
 
-       User user =  userService.getUserById(Long.parseLong(userId));
-       UserDTO userDTO = userFacade.userToUserDTO(user);
+        User user = userService.getUserById(Long.parseLong(userId));
+        UserDTO userDTO = userFacade.userToUserDTO(user);
 
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
+
     @PostMapping("/update")
     public ResponseEntity<Object> updateUser(@Valid @RequestBody UserDTO userDTO,
                                              BindingResult bindingResult,
-                                             Principal principal){
+                                             Principal principal) {
         ResponseEntity<Object> errors = responseErrorValidation.mapValidationService(bindingResult);
         if (!ObjectUtils.isEmpty(errors)) {
             return errors;
         }
         User user = userService.updateUser(userDTO, principal);
-        UserDTO updatedUser= userFacade.userToUserDTO(user);
+        UserDTO updatedUser = userFacade.userToUserDTO(user);
 
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }

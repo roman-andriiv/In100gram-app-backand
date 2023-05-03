@@ -73,7 +73,7 @@ public class ImageUploadService {
         imageModel.setImageBytes(compressBytes(file.getBytes()));
         imageModel.setName(file.getOriginalFilename());
 
-        LOG.info("Upload image profile to Post {} ", post.getId());
+        LOG.info("Uploading image profile to Post {} ", post.getId());
 
         return imageRepository.save(imageModel);
     }
@@ -89,7 +89,7 @@ public class ImageUploadService {
 
     public ImageModel getImageToPost(Long postId) {
         ImageModel imageModel = imageRepository.findByPostId(postId)
-                .orElseThrow(() -> new ImageNotFoundException("Cannot find Image to Post: " + postId));
+                .orElseThrow(() -> new ImageNotFoundException("Cannot find image to Post: " + postId));
         if (!ObjectUtils.isEmpty(imageModel)) {
             imageModel.setImageBytes(decompressBytes(imageModel.getImageBytes()));
         }
@@ -111,11 +111,11 @@ public class ImageUploadService {
         } catch (IOException e) {
             LOG.error("Cannot compress bytes");
         }
-        System.out.println("Compress Image Byte Size - " + outputStream.toByteArray().length);
+        System.out.println("Compressed Image Byte Size - " + outputStream.toByteArray().length);
         return outputStream.toByteArray();
     }
 
-    private byte[] decompressBytes(byte[] data) {
+    private static byte[] decompressBytes(byte[] data) {
         Inflater inflater = new Inflater();
         inflater.setInput(data);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);

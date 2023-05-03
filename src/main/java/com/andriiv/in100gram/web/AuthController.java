@@ -38,20 +38,6 @@ public class AuthController {
     @Autowired
     private JWTProvider jwtProvider;
 
-    //api/auth/signUp
-    @PostMapping("/signUp")
-    public ResponseEntity<Object> registerUser(@Valid @RequestBody SignupRequest signupRequest,
-                                               BindingResult bindingResult) {
-
-        ResponseEntity<Object> errors = responseErrorValidation.mapValidationService(bindingResult);
-        if (!ObjectUtils.isEmpty(errors)) {
-            return errors;
-        }
-
-        userService.createUser(signupRequest);
-        return ResponseEntity.ok(new MessageResponse("User was registered SUCCESSFULLY"));
-    }
-
     @PostMapping("/signIn")
     public ResponseEntity<Object> authenticateUser(@Valid @RequestBody LoginRequest loginRequest,
                                                    BindingResult bindingResult) {
@@ -68,5 +54,19 @@ public class AuthController {
         String jwt = SecurityConstants.TOKEN_PREFIX + jwtProvider.generateToken(authentication);
 
         return ResponseEntity.ok(new JWTSuccessResponse(true, jwt));
+    }
+
+    //api/auth/signUp
+    @PostMapping("/signUp")
+    public ResponseEntity<Object> registerUser(@Valid @RequestBody SignupRequest signupRequest,
+                                               BindingResult bindingResult) {
+
+        ResponseEntity<Object> errors = responseErrorValidation.mapValidationService(bindingResult);
+        if (!ObjectUtils.isEmpty(errors)) {
+            return errors;
+        }
+
+        userService.createUser(signupRequest);
+        return ResponseEntity.ok(new MessageResponse("User was registered SUCCESSFULLY"));
     }
 }
